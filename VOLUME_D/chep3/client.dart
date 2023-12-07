@@ -57,8 +57,8 @@ Future main() async {
   printHttpContentInfo(httpResponse, httpResponseContent);
 
   print("|-> [step.6] DELETE /timpstamp.txt");
-  serverPath = "timestamp.txt";
-  httpRequest = await httpClient.get(serverIp, serverPort, serverPath);
+  serverPath = "/timestamp.txt";
+  httpRequest = await httpClient.delete(serverIp, serverPort, serverPath);
   httpResponse = await httpRequest.close();
   httpResponseContent = await utf8.decoder.bind(httpResponse).join();
   printHttpContentInfo(httpResponse, httpResponseContent);
