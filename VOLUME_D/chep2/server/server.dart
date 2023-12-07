@@ -23,6 +23,7 @@ Future main() async {
           ..statusCode = HttpStatus.ok
           ..write("Hello, World!");
       } else if (request.uri.path.contains('/add')) {
+        //uri path로 함수 사용하기
         print("\$ http response is result of 'add' operation.");
         print("\$ send '200 ok'.");
 
@@ -33,6 +34,7 @@ Future main() async {
           ..statusCode = HttpStatus.ok
           ..write("${varList[1]} + ${varList[2]} = $result");
       } else if (await File(request.uri.path.substring(1)).exists() == true) {
+        //파일 정보 다운로드
         print("\$ http response is '${request.uri.path}' file transfer.");
         print("\$ send '200 ok'.");
 
