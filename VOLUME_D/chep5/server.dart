@@ -5,14 +5,14 @@ Future main() async {
   var db = <dynamic, dynamic>{};
 
   var server = await HttpServer.bind(
-    InternetAddress.anyIPv4,
+    InternetAddress.loopbackIPv4,
     4040,
   );
 
   printHttpServerActivated(server);
 
   await for (HttpRequest request in server) {
-    if (request.uri.path.contains('/api') == true) {
+    if (request.uri.path.contains('/api/') == true) {
       printHttpRequestInfo(request);
       try {
         switch (request.method) {
@@ -64,7 +64,7 @@ void printAndSendHttpResponse(var db, var request, var content) async {
   print("\$ $content \n current DB      : $db");
   request.response
     ..headers.contentType = ContentType('text', 'plain', charset: "utf-8")
-    ..headers.contentLenght = content.length
+    ..headers.contentLength = content.length
     ..statusCode = HttpStatus.ok
     ..write(content);
   await request.response.close();
@@ -75,17 +75,18 @@ void createDB(var db, var request) async {
   var transaction = jsonDecode(content) as Map;
   var key, value;
 
-  print("\> content       : $content ");
+  print("\> content       : $content");
 
   transaction.forEach((k, v) {
     key = k;
     value = v;
   });
-  if (db.containKey(key) == false) {
+
+  if (db.containsKey(key) == false) {
     db[key] = value;
-    content = "Success < $transaction created";
+    content = "Success < $transaction created >";
   } else {
-    content = "Fail < $key already exist>";
+    content = "Fail < $key already exist >";
   }
   printAndSendHttpResponse(db, request, content);
 }
@@ -99,7 +100,7 @@ void readDB(var db, var request) async {
     transaction[key] = db[key];
     content = "Success < $transaction retrieved >";
   } else {
-    content = "Fail < $key non-exist";
+    content = "Fail < $key non-exist >";
   }
   printAndSendHttpResponse(db, request, content);
 }
@@ -126,10 +127,10 @@ void updateDB(var db, var request) async {
 }
 
 void deleteDB(var db, var request) async {
-  var key = request.uri.pathSegnebt.last;
+  var key = request.uri.pathSegments.last;
   var content, value;
 
-  if (db.containKey(key) == true) {
+  if (db.containsKey(key) == true) {
     value = db[key];
     db.remove(key);
     content = "Success < $value delete >";
