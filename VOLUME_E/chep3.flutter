@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'App Title',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('AppBar Title'),
+        ),
+        body: Row(mainAxisSize: MainAxisSize.min, children:[
+            Image.network(
+          'https://flutter-ko.dev/assets/images/shared/brand/flutter/logo/flutter-lockup.png',
+               width:20, height:20,),
+      
+            Image.network(
+          'https://flutter-ko.dev/assets/images/shared/brand/flutter/logo/flutter-lockup.png',
+               width:20, height:20,),
+           Image.network(
+          'https://flutter-ko.dev/assets/images/shared/brand/flutter/logo/flutter-lockup.png',
+                width:20, height:20,),
+        ]),
+                  
+        ),
+    );
+  }
+}
