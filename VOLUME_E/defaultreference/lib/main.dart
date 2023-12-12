@@ -113,10 +113,7 @@ final groupAggregated = Container(
         ),
       ),
       Center(
-        child: Image.network(
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Dart-logo-icon.svg/2048px-Dart-logo-icon.svg.png',
-            width: 300,
-            height: 300),
+        child: Image.asset('images/flutter_00.png', width: 300, height: 150),
       ),
       Container(
         padding: const EdgeInsets.all(20),
@@ -241,8 +238,7 @@ class StarWidget extends StatelessWidget {
     'appTitle': 'StatelessWidget Demo',
     'appBarTitle': 'Flutter Official Site',
     'titleImageLink': //공백..
-        'https://storage.googleapis.com/cms-storage-bucket/'
-            '2f118a9971e4ca6ad737.png',
+        'images/flutter_01.png',
     'titleSectionHeader': 'Flutter on Mobile',
     'titleSectionBody': 'http://flutter.dev/multi-platform/mobile',
     'titleSectionScore': 100,
@@ -286,10 +282,10 @@ class StarWidget extends StatelessWidget {
 }
 
 Image _buildTitleImage(String imageName) {
-  return Image.network(
+  return Image.asset(
     imageName,
     width: 600,
-    height: 240,
+    height: 400,
     fit: BoxFit.cover,
   );
 }
