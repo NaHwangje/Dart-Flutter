@@ -3,11 +3,12 @@
 #include <stdarg.h>
 #include "sum_ffi.h"
 
-int main    ()
+int main()
 {
-    printf("3 + 5 = %d\n", sum(3,5));
+    printf("3 + 5 = %d\n", sum(3, 5));
     return 0;
 }
-int sum(int a, int b){
-    return a+b;
+int sum(int a, int b)
+{
+    return a + b;
 }
